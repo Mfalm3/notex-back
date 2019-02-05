@@ -31,12 +31,20 @@ module.exports = {
           email
         }
       });
+      if (!user) {
+        res.status(404).json({
+          error: 'User with given email not found!'
+        })
+      }
       const isValid = await bcrypt.compare(password, user.password)
       if (isValid) {
-        const { id, email } = user;
+        console.log('&&&&&', user)
+        const { id, email, firstName, lastName } = user;
         const payload = {
           id,
-          email
+          email,
+          firstName,
+          lastName
         }
         const token = generateToken(payload);
         res.status(200).json({
@@ -46,7 +54,7 @@ module.exports = {
       }
       res.status(401).json({
         error: 'Wrong email or password!'
-      })
+      });
     } catch (error) {
       if (error) res.status(500).json({
         error: 'An error occured when trying to log in the user!'
