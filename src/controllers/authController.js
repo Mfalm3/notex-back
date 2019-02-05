@@ -41,8 +41,7 @@ module.exports = {
         const token = generateToken(payload);
         res.status(200).json({
           message: 'User logged in successfully',
-          token,
-          user
+          token
         })
       }
       res.status(401).json({
