@@ -1,7 +1,7 @@
 # notex-back
 Note taking app for the JKUAT GDG talk using Node.js, Express, Sequelize and Postgres.
 
-# How to run the app
+## How to run the app
 - Clone the repo `$git clone https://github.com/ronaldndirangu/notex-back.git`
 - Cd into the `$cd notex-back` directory.
 - Install the dependancies using `$yarn install`
@@ -9,7 +9,7 @@ Note taking app for the JKUAT GDG talk using Node.js, Express, Sequelize and Pos
 - Run `$yarn db:rollmigrate` to rollback and migrate the database.
 - Start the server by running `$yarn start`
 
-# Endpoints
+## Endpoints
 Endpoint | Task | Requires Auth
 ------------ | ------------- | -----------
 POST `/api/v1/auth/signin` | User can login to the application | No
@@ -20,5 +20,5 @@ PATCH `/api/v1/notes/:id` | User can edit a specific note | Yes
 GET `/api/v1/notes/:id` | User view a specific note | Yes
 DELETE `/api/v1/notes/:id` | User can delete a specific note | Yes
 
-# Notes
+## Notes
 - To use token for authentication add it to the `headers` using the `Authorization` key.
