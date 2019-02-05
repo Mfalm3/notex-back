@@ -38,7 +38,6 @@ module.exports = {
       }
       const isValid = await bcrypt.compare(password, user.password)
       if (isValid) {
-        console.log('&&&&&', user)
         const { id, email, firstName, lastName } = user;
         const payload = {
           id,
