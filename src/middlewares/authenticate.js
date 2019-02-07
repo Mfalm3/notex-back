@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
   const token = req.body.token || req.headers.authorization
-  if (!token) return res.status(400).json({
+  if (!token) return res.status(401).json({
     message: "Please provide a token!"
   })
 
