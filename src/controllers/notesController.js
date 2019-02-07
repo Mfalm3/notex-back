@@ -33,7 +33,7 @@ module.exports = {
       });
       res.status(200).json({
         message: 'Note updated successfully!',
-        note: updatedNote
+        note: updatedNote[1]
       })
     } catch (error) {
       if (error) res.status(500).json({
