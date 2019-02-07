@@ -2,10 +2,13 @@ const express = require('express');
 const http = require('http');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const cors = require('cors');
 
 dotenv.config();
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
