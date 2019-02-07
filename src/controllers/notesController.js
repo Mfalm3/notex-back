@@ -77,7 +77,11 @@ module.exports = {
   },
   getAllNotes: async (req, res) => {
     try {
-      const notes = await Note.findAll();
+      const notes = await Note.findAll({
+        order: [
+          ['updatedAt', 'DESC']
+        ]
+      });
       if (notes.length < 1) {
         res.status(200).json({
           message: 'You don\'t have any notes yet'
@@ -88,6 +92,7 @@ module.exports = {
         notes
       });
     } catch(error) {
+      console.log(error)
       if (error) res.status(500).json({
         error: 'An error occured when trying to get your notes!'
       });
