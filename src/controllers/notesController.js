@@ -4,11 +4,9 @@ module.exports = {
   createNote: async(req, res) => {
     try {
       const { title, body} = req.body;
-      const { id } = req.user;
       const note = await Note.create({
         title,
         body,
-        userId: id
       });
       res.status(201).json({
         message: 'Note created successfully',
@@ -22,13 +20,12 @@ module.exports = {
   },
   updateNote: async(req, res) => {
     try {
-      const { id: userId } = req.user;
       const { id } = req.params;
       const updatedNote = await Note.update(
         {...req.body},
         { 
           returning: true,
-          where: { id, userId }
+          where: { id }
         }
       );
       if (updatedNote[0] === 0) res.status(404).json({
@@ -46,9 +43,8 @@ module.exports = {
   },
   getNote: async (req, res) => {
     try {
-      const { id: userId } = req.user;
       const { id } = req.params;
-      const note = await Note.findOne({ where: { id, userId }});
+      const note = await Note.findOne({ where: { id }});
       if (!note) res.status(404).json({
         error: 'Note not found!'
       });
@@ -81,8 +77,7 @@ module.exports = {
   },
   getAllNotes: async (req, res) => {
     try {
-      const { id: userId } = req.user;
-      const notes = await Note.findAll({ where: { userId }});
+      const notes = await Note.findAll();
       if (notes.length < 1) {
         res.status(200).json({
           message: 'You don\'t have any notes yet'

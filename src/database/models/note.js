@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Note.associate = (models) => {
     // associations can be defined here
-    Note.belongsTo(models.User, {
-      foreignKey: 'userId',
-      onDelete: 'CASCADE'
-    })
   };
   return Note;
 };
