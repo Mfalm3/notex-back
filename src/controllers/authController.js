@@ -13,12 +13,12 @@ module.exports = {
         email,
         password: hashedPassword
       });
-      res.status(201).json({
+      return res.status(201).json({
         message: 'User successfully created!',
         user
       })    
     } catch (error) {
-      if (error) res.status(500).json({
+      if (error) return res.status(500).json({
         error: 'An error occured when trying to create the user!'
       });
     }
@@ -32,7 +32,7 @@ module.exports = {
         }
       });
       if (!user) {
-        res.status(404).json({
+        return res.status(404).json({
           error: 'User with given email not found!'
         })
       }
@@ -46,16 +46,16 @@ module.exports = {
           lastName
         }
         const token = generateToken(payload);
-        res.status(200).json({
+        return res.status(200).json({
           message: 'User logged in successfully',
           token
         })
       }
-      res.status(401).json({
+      return res.status(401).json({
         error: 'Wrong email or password!'
       });
     } catch (error) {
-      if (error) res.status(500).json({
+      if (error) return res.status(500).json({
         error: 'An error occured when trying to log in the user!'
       });
     }
