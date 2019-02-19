@@ -11,6 +11,14 @@ module.exports = {
       next();
     })
   },
+  validateLoginBody: (req, res, next) => {
+    Joi.validate(req.body, schema.loginSchema, (err) => {
+      if (err) res.status(400).json({
+        error: err.details[0].message
+      });
+      next();
+    })
+  },
   validateNoteBody: (req, res, next) => {
     Joi.validate(req.body, schema.noteSchema, (err) => {
       if (err) res.status(400).json({

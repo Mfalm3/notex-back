@@ -10,5 +10,9 @@ module.exports = {
   noteSchema: {
     title: Joi.string().required(),
     body: Joi.string().required()
+  },
+  loginSchema: {
+    email: Joi.string().email({ minDomainAtoms: 2 }).required(),
+    password: Joi.string().required()
   }
 }

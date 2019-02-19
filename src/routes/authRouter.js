@@ -10,6 +10,10 @@ userRouter.post(
   validator.checkUserExists,
   authController.signupUser
 );
-userRouter.post('/auth/signin', authController.signinUser);
+userRouter.post(
+  '/auth/signin',
+  validator.validateLoginBody,
+  authController.signinUser
+);
 
 module.exports = userRouter;
