@@ -5,7 +5,7 @@ const schema = require('./schema');
 module.exports = {
   validateUserBody: (req, res, next) => {
     Joi.validate(req.body, schema.userSchema, (err) => {
-      if (err) res.status(400).json({
+      if (err) return res.status(400).json({
         error: err.details[0].message
       });
       next();
@@ -13,7 +13,7 @@ module.exports = {
   },
   validateLoginBody: (req, res, next) => {
     Joi.validate(req.body, schema.loginSchema, (err) => {
-      if (err) res.status(400).json({
+      if (err) return res.status(400).json({
         error: err.details[0].message
       });
       next();
@@ -21,7 +21,7 @@ module.exports = {
   },
   validateNoteBody: (req, res, next) => {
     Joi.validate(req.body, schema.noteSchema, (err) => {
-      if (err) res.status(400).json({
+      if (err) return res.status(400).json({
         error: err.details[0].message
       });
       next();
@@ -36,7 +36,7 @@ module.exports = {
       })
       next();
     } catch(error) {
-      if (error) res.status(500).json({
+      if (error) return res.status(500).json({
         error: 'An error occured when trying to check if the user exists!'
       });
     }
@@ -55,7 +55,7 @@ module.exports = {
       })
       next();
     } catch(error) {
-      if (error) res.status(500).json({
+      if (error) return res.status(500).json({
         error: 'An error occured when trying to check if the note exists!'
       });
     }
